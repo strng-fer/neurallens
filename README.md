@@ -2,7 +2,11 @@
 
 Platform visualisasi dan simulasi interaktif berbasis web untuk memahami cara kerja konsep Machine Learning hingga Deep Learning (Convolutional Neural Network) bagi pemula.
 
-Aplikasi ini berjalan **100% di sisi klien (*client-side*)** menggunakan Next.js App Router, TypeScript, Tailwind CSS, Lucide React, KaTeX, dan Zustand. Siap dipublikasikan langsung ke Vercel tanpa memerlukan server backend berbayar.
+Aplikasi ini berjalan **100% di sisi klien (*client-side*)** menggunakan Next.js App Router, TypeScript, Tailwind CSS, Lucide React, KaTeX, dan Zustand.
+
+- **Repositori GitHub:** [https://github.com/strng-fer/neurallens](https://github.com/strng-fer/neurallens)
+- **Live Demo (GitHub Pages):** [https://strng-fer.github.io/neurallens/](https://strng-fer.github.io/neurallens/)
+- **Deploy ke Vercel (1-Click):** [Deploy via Vercel](https://vercel.com/new/import?s=https://github.com/strng-fer/neurallens)
 
 ---
 
