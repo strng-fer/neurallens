@@ -41,8 +41,8 @@ export function ParameterSlider({
       className={cn(
         'rounded-lg border p-3 transition-all',
         isHighlighted
-          ? 'border-cyan-400 bg-cyan-950/20 shadow-[0_0_10px_rgba(6,182,212,0.15)]'
-          : 'border-slate-800/80 bg-slate-900/60 hover:border-slate-700/80',
+          ? 'border-blue-400 bg-blue-50/70 shadow-xs ring-1 ring-blue-300'
+          : 'border-slate-200/80 bg-white/70 hover:border-slate-300 shadow-xs',
         className
       )}
       onMouseEnter={() => symbol && setHighlightedSymbol(symbol)}
@@ -52,11 +52,11 @@ export function ParameterSlider({
       <div className="mb-2 flex items-center justify-between gap-2">
         <label
           htmlFor={id}
-          className="flex items-center gap-1.5 text-xs font-medium text-slate-300"
+          className="flex items-center gap-1.5 text-xs font-medium text-slate-700"
         >
           {symbol && (
             <span
-              className="rounded bg-slate-800 px-1.5 py-0.5 font-mono text-[11px] font-bold"
+              className="rounded bg-slate-100 border border-slate-200/80 px-1.5 py-0.5 font-mono text-[11px] font-bold"
               style={{ color }}
             >
               {symbol}
@@ -65,9 +65,9 @@ export function ParameterSlider({
           <span>{label}</span>
         </label>
 
-        <span className="font-mono text-xs font-semibold text-slate-100">
+        <span className="font-mono text-xs font-semibold text-slate-900">
           {value.toFixed(step < 0.1 ? 2 : 1)}
-          {unit && <span className="ml-1 text-[11px] text-slate-400">{unit}</span>}
+          {unit && <span className="ml-1 text-[11px] text-slate-500">{unit}</span>}
         </span>
       </div>
 
@@ -89,8 +89,8 @@ export function ParameterSlider({
           aria-valuenow={value}
           aria-valuetext={`${value} ${unit}`}
           className={cn(
-            'h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-800 accent-cyan-400 transition-all',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950'
+            'h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 accent-blue-600 transition-all',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white'
           )}
         />
       </div>
@@ -98,7 +98,7 @@ export function ParameterSlider({
       {/* Min and Max scale markers */}
       <div className="mt-1 flex items-center justify-between text-[10px] font-mono text-slate-500">
         <span>{min}</span>
-        {tooltip && <span className="text-slate-400 font-sans italic">{tooltip}</span>}
+        {tooltip && <span className="text-slate-500 font-sans italic">{tooltip}</span>}
         <span>{max}</span>
       </div>
     </div>

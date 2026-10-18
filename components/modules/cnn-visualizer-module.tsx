@@ -176,16 +176,16 @@ export function CNNVisualizerModule() {
   return (
     <div className="space-y-6">
       {/* Module Header */}
-      <div className="flex flex-col gap-1.5 border-b border-slate-800 pb-4">
+      <div className="flex flex-col gap-1.5 border-b border-slate-200/80 pb-4">
         <div className="flex items-center gap-2">
-          <span className="rounded bg-cyan-950 px-2 py-0.5 font-mono text-xs font-bold text-cyan-400 border border-cyan-800/60">
+          <span className="rounded bg-blue-50 px-2 py-0.5 font-mono text-xs font-bold text-blue-700 border border-blue-200">
             Modul 04
           </span>
-          <h2 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+          <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
             Bagaimana Komputer Melihat & Mengenali Angka 1-5? (Bedah Arsitektur CNN)
           </h2>
         </div>
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-slate-600">
           Ikuti perjalanan visual 4 tahap: Gambar Input Angka 8x8 → Konvolusi Sliding Kernel 3x3 → Peta Fitur 6x6 & Max Pooling 3x3 → Prediksi Klasifikasi Digit 1-5.
         </p>
       </div>
@@ -194,11 +194,11 @@ export function CNNVisualizerModule() {
       <GuidedPresetButtons presets={presets} />
 
       {/* Control Bar for Scan Animation */}
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-800 bg-slate-900/80 p-4 backdrop-blur-md">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200/80 bg-white/80 p-4 backdrop-blur-md shadow-xs">
         <div className="flex items-center gap-3">
           <StatusIndicator status={statusText} variant={statusVariant} description={statusDesc} />
-          <div className="hidden sm:block text-xs font-mono text-slate-400">
-            Langkah: <strong className="text-cyan-300">{currentStep + 1}</strong>/36
+          <div className="hidden sm:block text-xs font-mono text-slate-600">
+            Langkah: <strong className="text-blue-700 font-bold">{currentStep + 1}</strong>/36
           </div>
         </div>
 
@@ -216,10 +216,10 @@ export function CNNVisualizerModule() {
         {/* =========================================
             PANEL 1: Input Image Canvas (8x8)
            ========================================= */}
-        <div className="flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/80 p-4 backdrop-blur-md">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-            <h3 className="text-xs font-semibold text-slate-100 flex items-center gap-1.5 uppercase tracking-wider">
-              <Grid className="h-4 w-4 text-emerald-400" aria-hidden="true" />
+        <div className="flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white/80 p-4 backdrop-blur-md shadow-xs">
+          <div className="flex items-center justify-between border-b border-slate-200/80 pb-2">
+            <h3 className="text-xs font-semibold text-slate-900 flex items-center gap-1.5 uppercase tracking-wider">
+              <Grid className="h-4 w-4 text-emerald-600" aria-hidden="true" />
               <span>1. Gambar Input (8x8)</span>
             </h3>
             <button
@@ -227,14 +227,14 @@ export function CNNVisualizerModule() {
               onClick={handleClearCanvas}
               title="Bersihkan Kanvas"
               aria-label="Bersihkan Kanvas Gambar"
-              className="flex items-center gap-1 rounded bg-slate-800 px-2 py-1 text-[11px] text-slate-300 hover:text-white"
+              className="flex items-center gap-1 rounded border border-slate-200 bg-slate-100 hover:bg-slate-200 px-2 py-1 text-[11px] font-medium text-slate-700 hover:text-slate-900 transition-colors"
             >
               <Eraser className="h-3 w-3" />
               <span>Kosongkan</span>
             </button>
           </div>
 
-          <p className="text-[11px] text-slate-400">
+          <p className="text-[11px] text-slate-600">
             Klik kotak untuk menggambar angka 1-5 (0 atau 1), atau pilih angka siap pakai:
           </p>
 
@@ -250,8 +250,8 @@ export function CNNVisualizerModule() {
                   className={cn(
                     'rounded border px-2.5 py-1 text-xs font-semibold transition-colors',
                     isSelected
-                      ? 'border-emerald-500 bg-emerald-950/60 text-emerald-300 shadow-[0_0_8px_rgba(16,185,129,0.3)]'
-                      : 'border-slate-800 bg-slate-950 text-slate-400 hover:text-slate-200'
+                      ? 'border-emerald-500 bg-emerald-50 text-emerald-900 font-bold shadow-xs'
+                      : 'border-slate-200 bg-slate-50/70 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                   )}
                 >
                   {CNN_IMAGE_PRESETS[pkey].name}
@@ -261,7 +261,7 @@ export function CNNVisualizerModule() {
           </div>
 
           {/* Interactive 8x8 Grid */}
-          <div className="relative mx-auto my-1 flex aspect-square w-full max-w-[240px] flex-col rounded-xl border-2 border-slate-700 bg-slate-950 p-1.5 shadow-inner">
+          <div className="relative mx-auto my-1 flex aspect-square w-full max-w-[240px] flex-col rounded-xl border border-slate-200/80 bg-slate-50/70 p-1.5 shadow-inner">
             <div className="grid h-full w-full grid-cols-8 grid-rows-8 gap-0.5">
               {image.map((row, rIdx) =>
                 row.map((val, cIdx) => {
@@ -279,8 +279,10 @@ export function CNNVisualizerModule() {
                       aria-label={`Piksel baris ${rIdx + 1}, kolom ${cIdx + 1}, nilai ${val}`}
                       className={cn(
                         'relative flex items-center justify-center rounded-sm font-mono text-[9px] font-bold transition-all',
-                        val === 1 ? 'bg-slate-100 text-slate-900' : 'bg-slate-900 text-slate-600',
-                        isInKernelWindow && 'ring-2 ring-amber-400 z-10'
+                        val === 1
+                          ? 'bg-slate-900 text-white font-bold'
+                          : 'bg-white text-slate-400 hover:bg-slate-100 border border-slate-200/60',
+                        isInKernelWindow && 'ring-2 ring-amber-500 z-10'
                       )}
                     >
                       {val}
@@ -292,7 +294,7 @@ export function CNNVisualizerModule() {
 
             {/* Bounding Box Outline Indicator for Current Kernel Step */}
             <div
-              className="pointer-events-none absolute border-2 border-amber-400 bg-amber-400/15 shadow-[0_0_12px_rgba(245,158,11,0.3)] transition-all duration-200"
+              className="pointer-events-none absolute border-2 border-amber-500 bg-amber-500/20 transition-all duration-200"
               style={{
                 top: `${(stepDetail.row / 8) * 100}%`,
                 left: `${(stepDetail.col / 8) * 100}%`,
@@ -301,7 +303,7 @@ export function CNNVisualizerModule() {
               }}
             />
           </div>
-          <div className="text-center text-[10px] text-amber-300 font-mono">
+          <div className="text-center text-[10px] text-amber-700 font-medium font-mono">
             Sorotan kuning: area 3x3 yang sedang dipindai
           </div>
         </div>
@@ -309,15 +311,15 @@ export function CNNVisualizerModule() {
         {/* =========================================
             PANEL 2: Kernel Filter & Current Math
            ========================================= */}
-        <div className="flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/80 p-4 backdrop-blur-md">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-            <h3 className="text-xs font-semibold text-slate-100 flex items-center gap-1.5 uppercase tracking-wider">
-              <Scan className="h-4 w-4 text-cyan-400" aria-hidden="true" />
+        <div className="flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white/80 p-4 backdrop-blur-md shadow-xs">
+          <div className="flex items-center justify-between border-b border-slate-200/80 pb-2">
+            <h3 className="text-xs font-semibold text-slate-900 flex items-center gap-1.5 uppercase tracking-wider">
+              <Scan className="h-4 w-4 text-blue-600" aria-hidden="true" />
               <span>2. Kernel / Filter (3x3)</span>
             </h3>
           </div>
 
-          <p className="text-[11px] text-slate-400">
+          <p className="text-[11px] text-slate-600">
             Pilih detektor fitur atau ubah nilai bobot secara langsung:
           </p>
 
@@ -333,20 +335,20 @@ export function CNNVisualizerModule() {
                   className={cn(
                     'flex items-center justify-between rounded-lg border p-2 text-left text-xs transition-colors',
                     isSelected
-                      ? 'border-cyan-500 bg-cyan-950/60 text-cyan-200'
-                      : 'border-slate-800 bg-slate-950 text-slate-400 hover:text-slate-200'
+                      ? 'border-blue-500 bg-blue-50 text-blue-900 font-semibold shadow-xs'
+                      : 'border-slate-200 bg-slate-50/70 text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                   )}
                 >
                   <span className="font-semibold">{CNN_KERNEL_PRESETS[kkey].name}</span>
-                  {isSelected && <Check className="h-3.5 w-3.5 text-cyan-400" />}
+                  {isSelected && <Check className="h-3.5 w-3.5 text-blue-600" />}
                 </button>
               );
             })}
           </div>
 
           {/* Editable 3x3 Kernel Matrix */}
-          <div className="rounded-xl border border-slate-800 bg-slate-950 p-2 text-center">
-            <span className="text-[10px] font-mono text-slate-400">Matriks Filter 3x3:</span>
+          <div className="rounded-xl border border-slate-200/80 bg-slate-50/70 p-2 text-center">
+            <span className="text-[10px] font-mono text-slate-600 font-semibold">Matriks Filter 3x3:</span>
             <div className="mx-auto mt-1 grid max-w-[150px] grid-cols-3 gap-1">
               {kernel.map((row, r) =>
                 row.map((val, c) => (
@@ -363,7 +365,7 @@ export function CNNVisualizerModule() {
                       });
                     }}
                     aria-label={`Kernel sel ${r}, ${c}`}
-                    className="h-8 w-11 rounded border border-slate-700 bg-slate-900 text-center font-mono text-xs font-bold text-cyan-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400"
+                    className="h-8 w-11 rounded border border-slate-300 bg-white text-center font-mono text-xs font-bold text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                   />
                 ))
               )}
@@ -371,15 +373,15 @@ export function CNNVisualizerModule() {
           </div>
 
           {/* Real-time Math Breakdown Box */}
-          <div className="rounded-xl border border-cyan-800/40 bg-cyan-950/20 p-2.5">
-            <div className="text-[11px] font-semibold text-cyan-300">
+          <div className="rounded-xl border border-blue-200 bg-blue-50/70 p-2.5">
+            <div className="text-[11px] font-semibold text-blue-900">
               Bedah Hitungan Dot Product Saat Ini:
             </div>
-            <div className="mt-1 font-mono text-[10px] leading-tight text-slate-300">
-              Sum = (9 piksel × 9 filter) = <span className="font-bold text-amber-300">{stepDetail.dotSum}</span>
+            <div className="mt-1 font-mono text-[10px] leading-tight text-slate-700">
+              Sum = (9 piksel × 9 filter) = <span className="font-bold text-amber-800">{stepDetail.dotSum}</span>
             </div>
-            <div className="mt-1 font-mono text-[10px] text-slate-300">
-              Aktivasi ReLU(Sum) = <span className="font-bold text-emerald-400">{stepDetail.reluValue}</span>
+            <div className="mt-1 font-mono text-[10px] text-slate-700">
+              Aktivasi ReLU(Sum) = <span className="font-bold text-emerald-700">{stepDetail.reluValue}</span>
             </div>
           </div>
         </div>
@@ -387,21 +389,21 @@ export function CNNVisualizerModule() {
         {/* =========================================
             PANEL 3: Feature Map (6x6) & Max Pooling (3x3)
            ========================================= */}
-        <div className="flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/80 p-4 backdrop-blur-md">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-            <h3 className="text-xs font-semibold text-slate-100 flex items-center gap-1.5 uppercase tracking-wider">
-              <Layers className="h-4 w-4 text-amber-400" aria-hidden="true" />
+        <div className="flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white/80 p-4 backdrop-blur-md shadow-xs">
+          <div className="flex items-center justify-between border-b border-slate-200/80 pb-2">
+            <h3 className="text-xs font-semibold text-slate-900 flex items-center gap-1.5 uppercase tracking-wider">
+              <Layers className="h-4 w-4 text-amber-600" aria-hidden="true" />
               <span>3. Peta Fitur & Pooling</span>
             </h3>
           </div>
 
           {/* 6x6 Feature Map */}
           <div>
-            <div className="mb-1 flex items-center justify-between text-[11px] text-slate-400">
+            <div className="mb-1 flex items-center justify-between text-[11px] text-slate-600">
               <span>Feature Map (6x6):</span>
-              <span className="font-mono text-amber-300">{stepDetail.reluValue} baru masuk</span>
+              <span className="font-mono text-amber-700 font-semibold">{stepDetail.reluValue} baru masuk</span>
             </div>
-            <div className="mx-auto grid max-w-[200px] grid-cols-6 gap-0.5 rounded-lg border border-slate-800 bg-slate-950 p-1">
+            <div className="mx-auto grid max-w-[200px] grid-cols-6 gap-0.5 rounded-lg border border-slate-200/80 bg-slate-50/70 p-1">
               {featureMap.map((row, r) =>
                 row.map((val, c) => {
                   const isCurrentCell = r === stepDetail.row && c === stepDetail.col;
@@ -410,12 +412,12 @@ export function CNNVisualizerModule() {
                       key={`fm-${r}-${c}`}
                       className={cn(
                         'flex aspect-square items-center justify-center rounded font-mono text-[9px] font-bold transition-all',
-                        isCurrentCell && 'ring-2 ring-cyan-400 bg-cyan-950 text-cyan-200',
+                        isCurrentCell && 'ring-2 ring-blue-500 bg-blue-100 text-blue-900 font-bold',
                         val === null
-                          ? 'bg-slate-900/40 text-slate-700'
+                          ? 'bg-slate-100/60 text-slate-300 border border-dashed border-slate-200'
                           : val > 0
-                          ? 'bg-amber-950/70 text-amber-300 border border-amber-800/50'
-                          : 'bg-slate-900 text-slate-500'
+                          ? 'bg-amber-100 text-amber-900 border border-amber-300 font-bold'
+                          : 'bg-white text-slate-600 border border-slate-200'
                       )}
                     >
                       {val !== null ? val : '·'}
@@ -427,12 +429,12 @@ export function CNNVisualizerModule() {
           </div>
 
           {/* 2x2 Max Pooling into 3x3 */}
-          <div className="mt-2 border-t border-slate-800/80 pt-2">
-            <div className="mb-1 flex items-center justify-between text-[11px] text-slate-400">
+          <div className="mt-2 border-t border-slate-200/80 pt-2">
+            <div className="mb-1 flex items-center justify-between text-[11px] text-slate-600">
               <span>Hasil Max Pooling 2x2 (3x3):</span>
-              <span className="text-[10px] text-cyan-300 font-mono">Puncak Terbesar</span>
+              <span className="text-[10px] text-emerald-700 font-semibold font-mono">Puncak Terbesar</span>
             </div>
-            <div className="mx-auto grid max-w-[130px] grid-cols-3 gap-1 rounded-lg border border-slate-800 bg-slate-950 p-1.5">
+            <div className="mx-auto grid max-w-[130px] grid-cols-3 gap-1 rounded-lg border border-slate-200/80 bg-slate-50/70 p-1.5">
               {pooledMap.map((pRow, pr) =>
                 pRow.map((pVal, pc) => (
                   <div
@@ -440,8 +442,8 @@ export function CNNVisualizerModule() {
                     className={cn(
                       'flex aspect-square items-center justify-center rounded border font-mono text-xs font-bold',
                       pVal !== null && pVal > 0
-                        ? 'border-emerald-600/60 bg-emerald-950/60 text-emerald-300'
-                        : 'border-slate-800 bg-slate-900 text-slate-600'
+                        ? 'border-emerald-300 bg-emerald-100 text-emerald-900 font-bold'
+                        : 'border-slate-200 bg-white text-slate-400'
                     )}
                   >
                     {pVal !== null ? pVal : '·'}
@@ -450,7 +452,7 @@ export function CNNVisualizerModule() {
               )}
             </div>
           </div>
-          <div className="text-[10px] text-slate-400 text-center">
+          <div className="text-[10px] text-slate-600 text-center">
             Max Pooling mengambil nilai terbesar dari setiap blok 2x2 untuk menjaga fitur penting.
           </div>
         </div>
@@ -458,26 +460,26 @@ export function CNNVisualizerModule() {
         {/* =========================================
             PANEL 4: Flattening & Prediction Bar Chart
            ========================================= */}
-        <div className="flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/80 p-4 backdrop-blur-md">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-            <h3 className="text-xs font-semibold text-slate-100 flex items-center gap-1.5 uppercase tracking-wider">
-              <BarChart3 className="h-4 w-4 text-purple-400" aria-hidden="true" />
+        <div className="flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white/80 p-4 backdrop-blur-md shadow-xs">
+          <div className="flex items-center justify-between border-b border-slate-200/80 pb-2">
+            <h3 className="text-xs font-semibold text-slate-900 flex items-center gap-1.5 uppercase tracking-wider">
+              <BarChart3 className="h-4 w-4 text-purple-600" aria-hidden="true" />
               <span>4. Prediksi Akhir</span>
             </h3>
           </div>
 
           {/* Flattening representation */}
           <div>
-            <div className="mb-1 text-[11px] text-slate-400">
+            <div className="mb-1 text-[11px] text-slate-600">
               Vektor Flattening (9 Angka 1D):
             </div>
-            <div className="flex flex-wrap gap-1 rounded-lg border border-slate-800 bg-slate-950 p-1.5 font-mono text-[10px]">
+            <div className="flex flex-wrap gap-1 rounded-lg border border-slate-200/80 bg-slate-50/70 p-1.5 font-mono text-[10px]">
               {flattened.map((v, i) => (
                 <span
                   key={`flat-${i}`}
                   className={cn(
                     'rounded px-1 py-0.5',
-                    v > 0 ? 'bg-cyan-950 text-cyan-300 font-bold' : 'text-slate-600'
+                    v > 0 ? 'bg-blue-100 text-blue-900 font-bold border border-blue-200' : 'text-slate-400'
                   )}
                 >
                   {v}
@@ -487,15 +489,15 @@ export function CNNVisualizerModule() {
           </div>
 
           {/* Top Digit Winner Badge */}
-          <div className="rounded-xl border border-cyan-500/40 bg-cyan-950/40 p-2.5 text-center shadow-[0_0_12px_rgba(6,182,212,0.2)]">
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+          <div className="rounded-xl border border-blue-200 bg-blue-50/80 p-2.5 text-center shadow-xs">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-600">
               Tebakan Angka Terkuat:
             </span>
             <div className="flex items-center justify-center gap-2 mt-0.5">
-              <span className="text-xl font-extrabold font-mono text-cyan-300">
+              <span className="text-2xl font-extrabold font-mono text-blue-900">
                 {topPrediction.label}
               </span>
-              <span className="rounded-full bg-cyan-500/20 px-2.5 py-0.5 text-xs font-mono font-bold text-cyan-200 border border-cyan-500/40">
+              <span className="rounded-full bg-blue-600 px-2.5 py-0.5 text-xs font-mono font-bold text-white shadow-xs">
                 {topPrediction.probability}%
               </span>
             </div>
@@ -503,7 +505,7 @@ export function CNNVisualizerModule() {
 
           {/* Prediction Bars for Digits 1-5 */}
           <div className="space-y-2 mt-1">
-            <div className="text-[11px] font-semibold text-slate-300">
+            <div className="text-[11px] font-semibold text-slate-800">
               Probabilitas Tiap Digit (1-5):
             </div>
             {predictions.map((pred) => {
@@ -511,22 +513,22 @@ export function CNNVisualizerModule() {
               return (
                 <div key={pred.label} className="space-y-1">
                   <div className="flex justify-between text-[11px]">
-                    <span className={cn('font-medium', isWinner ? 'text-cyan-300 font-bold' : 'text-slate-300')}>
+                    <span className={cn('font-medium', isWinner ? 'text-blue-900 font-bold' : 'text-slate-700')}>
                       {pred.label} {isWinner && '(Terpilih)'}
                     </span>
-                    <span className={cn('font-mono font-bold', isWinner ? 'text-cyan-300' : 'text-slate-400')}>
+                    <span className={cn('font-mono font-bold', isWinner ? 'text-blue-900' : 'text-slate-600')}>
                       {pred.probability}%
                     </span>
                   </div>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100 border border-slate-200/60">
                     <div
                       className={cn(
                         'h-full transition-all duration-300',
                         isWinner
-                          ? 'bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.5)]'
+                          ? 'bg-blue-600'
                           : pred.probability >= 25
-                          ? 'bg-amber-400'
-                          : 'bg-slate-600'
+                          ? 'bg-amber-500'
+                          : 'bg-slate-300'
                       )}
                       style={{ width: `${pred.probability}%` }}
                     />
@@ -537,15 +539,15 @@ export function CNNVisualizerModule() {
           </div>
 
           {/* Honest Educational Classification Disclaimer */}
-          <div className="mt-auto rounded-lg border border-slate-800/80 bg-slate-950/70 p-2.5 text-[10px] text-slate-400">
-            <strong className="text-slate-200">Catatan Simulasi: </strong>
+          <div className="mt-auto rounded-lg border border-slate-200/80 bg-slate-50/70 p-2.5 text-[10px] text-slate-600">
+            <strong className="text-slate-800">Catatan Simulasi: </strong>
             Prediksi dihitung dari korelasi fitur pooling dan kemiripan bentuk angka 1-5 (simulasi klasifikasi edukatif CNN).
           </div>
         </div>
       </div>
 
       {/* Manual Slider for Scan Step */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-4 backdrop-blur-md">
+      <div className="rounded-xl border border-slate-200/80 bg-white/80 p-4 backdrop-blur-md shadow-xs">
         <ParameterSlider
           id="slider-cnn-step"
           label="Langkah Pemindaian Konvolusi (Posisi Filter)"
@@ -558,7 +560,7 @@ export function CNNVisualizerModule() {
             setIsScanning(false);
             setCurrentStep(val - 1);
           }}
-          color="#F59E0B"
+          color="#2563EB"
           tooltip="Geser untuk melihat posisi filter secara manual dari 1 hingga 36"
         />
       </div>
@@ -569,9 +571,9 @@ export function CNNVisualizerModule() {
           title="Rumus Matematika Operasi Konvolusi & Max Pooling"
           latex="(I * K)_{r,c} = \text{ReLU}\left(\sum_{i=0}^2 \sum_{j=0}^2 I_{r+i, c+j} \cdot K_{i,j}\right)"
           variableMap={[
-            { symbol: 'I', label: 'Input gambar angka 8x8', color: '#10B981' },
-            { symbol: 'K', label: 'Kernel filter 3x3', color: '#06B6D4' },
-            { symbol: 'ReLU', label: 'Fungsi aktivasi max(0, x)', color: '#F59E0B' },
+            { symbol: 'I', label: 'Input gambar angka 8x8', color: '#059669' },
+            { symbol: 'K', label: 'Kernel filter 3x3', color: '#2563EB' },
+            { symbol: 'ReLU', label: 'Fungsi aktivasi max(0, x)', color: '#D97706' },
           ]}
         />
 
@@ -589,7 +591,7 @@ export function CNNVisualizerModule() {
           mathText={
             <p>
               Operasi konvolusi 2D diskrit menerapkan perkalian elemen-demi-elemen dengan kernel bobot terbagi (weight sharing).
-              Hasil pooling membentuk vektor fitur representasi 9 dimensi yang menjadi dasar perhitungan probabilitas fungsi Softmax pada 5 kelas angka <span className="font-mono text-cyan-300">d ∈ &#123;1, 2, 3, 4, 5&#125;</span>.
+              Hasil pooling membentuk vektor fitur representasi 9 dimensi yang menjadi dasar perhitungan probabilitas fungsi Softmax pada 5 kelas angka <span className="font-mono text-blue-700 font-semibold">d ∈ &#123;1, 2, 3, 4, 5&#125;</span>.
             </p>
           }
           keyTakeaway="Prinsip utama CNN dalam pengenalan angka (seperti dataset MNIST) adalah menyederhanakan gambar piksel kompleks menjadi kombinasi pola fitur primitif lokal (garis dan lengkungan)."

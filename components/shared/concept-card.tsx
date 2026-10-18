@@ -26,17 +26,17 @@ export function ConceptCard({
   return (
     <div
       className={cn(
-        'relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur-md transition-all',
+        'relative overflow-hidden rounded-xl border border-slate-200/80 bg-white/80 p-5 backdrop-blur-md shadow-xs transition-all',
         className
       )}
     >
       {/* Header bar with Mode Badge */}
       <div className="mb-3 flex items-center justify-between">
-        <h3 className="font-semibold text-slate-100 text-sm tracking-wide flex items-center gap-2">
+        <h3 className="font-semibold text-slate-900 text-sm tracking-wide flex items-center gap-2">
           {isIntuition ? (
-            <Lightbulb className="h-4 w-4 text-amber-400" aria-hidden="true" />
+            <Lightbulb className="h-4 w-4 text-amber-600" aria-hidden="true" />
           ) : (
-            <Calculator className="h-4 w-4 text-cyan-400" aria-hidden="true" />
+            <Calculator className="h-4 w-4 text-blue-600" aria-hidden="true" />
           )}
           <span>{title}</span>
         </h3>
@@ -45,8 +45,8 @@ export function ConceptCard({
           className={cn(
             'inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-medium border',
             isIntuition
-              ? 'border-amber-500/30 bg-amber-950/40 text-amber-300'
-              : 'border-cyan-500/30 bg-cyan-950/40 text-cyan-300'
+              ? 'border-amber-200 bg-amber-50 text-amber-900'
+              : 'border-blue-200 bg-blue-50 text-blue-900'
           )}
         >
           <span>{isIntuition ? 'Mode Intuisi' : 'Mode Matematika'}</span>
@@ -54,14 +54,14 @@ export function ConceptCard({
       </div>
 
       {/* Main explanation content */}
-      <div className="text-sm leading-relaxed text-slate-300">
+      <div className="text-sm leading-relaxed text-slate-700">
         {isIntuition ? intuitionText : mathText}
       </div>
 
       {/* Optional key takeaway footer */}
       {keyTakeaway && (
-        <div className="mt-4 rounded-lg border border-slate-800/90 bg-slate-950/60 p-3 text-xs text-slate-400">
-          <strong className="text-slate-200">Kunci Pemahaman: </strong>
+        <div className="mt-4 rounded-lg border border-slate-200/80 bg-slate-50/80 p-3 text-xs text-slate-600">
+          <strong className="text-slate-900">Kunci Pemahaman: </strong>
           {keyTakeaway}
         </div>
       )}

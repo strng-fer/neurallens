@@ -17,7 +17,7 @@ export function ModuleStepper({ className }: { className?: string }) {
       <div
         role="tablist"
         aria-orientation="horizontal"
-        className="flex min-w-max items-center gap-1.5 rounded-xl border border-slate-800 bg-slate-900/80 p-1.5 backdrop-blur-md"
+        className="flex min-w-max items-center gap-1.5 rounded-xl border border-slate-200/80 bg-white/80 p-1.5 backdrop-blur-md shadow-xs"
       >
         {MODULES_METADATA.map((mod) => {
           const isActive = activeModule === mod.id;
@@ -32,25 +32,25 @@ export function ModuleStepper({ className }: { className?: string }) {
               onClick={() => setActiveModule(mod.id as ModuleId)}
               className={cn(
                 'group flex min-h-[44px] items-center gap-2 rounded-lg px-3.5 py-2 text-xs font-medium transition-all',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-1 focus-visible:ring-offset-slate-950',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 focus-visible:ring-offset-white',
                 isActive
-                  ? 'border border-cyan-500/40 bg-cyan-950/50 text-cyan-200 shadow-[0_0_12px_rgba(6,182,212,0.25)]'
-                  : 'text-slate-400 hover:border-slate-700/60 hover:bg-slate-800/50 hover:text-slate-200'
+                  ? 'border border-blue-200 bg-blue-50/90 text-blue-900 shadow-xs'
+                  : 'text-slate-600 hover:border-slate-200 hover:bg-slate-100/70 hover:text-slate-900'
               )}
             >
               <span
                 className={cn(
                   'flex h-5 w-5 items-center justify-center rounded font-mono text-[10px] font-bold',
                   isActive
-                    ? 'bg-cyan-500 text-slate-950'
-                    : 'bg-slate-800 text-slate-400 group-hover:text-slate-200'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-slate-100 text-slate-600 group-hover:bg-slate-200 group-hover:text-slate-800'
                 )}
               >
                 {mod.number}
               </span>
               <div className="flex flex-col text-left">
                 <span className="font-semibold">{mod.shortTitle}</span>
-                <span className="text-[10px] text-slate-400 font-normal hidden md:inline">
+                <span className="text-[10px] text-slate-500 font-normal hidden md:inline">
                   {mod.subtitle}
                 </span>
               </div>

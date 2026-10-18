@@ -12,7 +12,7 @@ export function LearningModeToggle({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'inline-flex items-center rounded-xl border border-slate-800 bg-slate-900/90 p-1 shadow-sm',
+        'inline-flex items-center rounded-xl border border-slate-200/80 bg-slate-100/80 p-1 shadow-xs',
         className
       )}
       role="group"
@@ -26,13 +26,13 @@ export function LearningModeToggle({ className }: { className?: string }) {
         onClick={() => setMode('intuition')}
         className={cn(
           'inline-flex min-h-[38px] items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500',
           isIntuition
-            ? 'bg-amber-500/20 text-amber-200 border border-amber-500/40 shadow-[0_0_10px_rgba(245,158,11,0.2)]'
-            : 'text-slate-400 hover:text-slate-200'
+            ? 'bg-white text-amber-900 border border-amber-300 shadow-xs font-semibold'
+            : 'text-slate-600 hover:text-slate-900'
         )}
       >
-        <Lightbulb className={cn('h-3.5 w-3.5', isIntuition ? 'text-amber-400' : 'text-slate-500')} aria-hidden="true" />
+        <Lightbulb className={cn('h-3.5 w-3.5', isIntuition ? 'text-amber-600' : 'text-slate-400')} aria-hidden="true" />
         <span>Mode Intuisi (Analogi)</span>
       </button>
 
@@ -44,13 +44,13 @@ export function LearningModeToggle({ className }: { className?: string }) {
         onClick={() => setMode('math')}
         className={cn(
           'inline-flex min-h-[38px] items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500',
           !isIntuition
-            ? 'bg-cyan-500/20 text-cyan-200 border border-cyan-500/40 shadow-[0_0_10px_rgba(6,182,212,0.2)]'
-            : 'text-slate-400 hover:text-slate-200'
+            ? 'bg-white text-blue-900 border border-blue-300 shadow-xs font-semibold'
+            : 'text-slate-600 hover:text-slate-900'
         )}
       >
-        <Calculator className={cn('h-3.5 w-3.5', !isIntuition ? 'text-cyan-400' : 'text-slate-500')} aria-hidden="true" />
+        <Calculator className={cn('h-3.5 w-3.5', !isIntuition ? 'text-blue-600' : 'text-slate-400')} aria-hidden="true" />
         <span>Mode Matematika (Rumus)</span>
       </button>
     </div>

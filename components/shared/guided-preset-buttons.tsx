@@ -26,12 +26,12 @@ export function GuidedPresetButtons({
   return (
     <div
       className={cn(
-        'rounded-xl border border-slate-800 bg-slate-900/60 p-3.5 backdrop-blur-md',
+        'rounded-xl border border-slate-200/80 bg-white/80 p-3.5 backdrop-blur-md shadow-xs',
         className
       )}
     >
-      <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-slate-300">
-        <Sparkles className="h-3.5 w-3.5 text-amber-400" aria-hidden="true" />
+      <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-slate-800">
+        <Sparkles className="h-3.5 w-3.5 text-amber-600" aria-hidden="true" />
         <span>{title}</span>
       </div>
 
@@ -45,16 +45,16 @@ export function GuidedPresetButtons({
             className={cn(
               'group flex flex-col items-start rounded-lg border p-2.5 text-left transition-all',
               'min-h-[44px]',
-              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-1 focus-visible:ring-offset-slate-950',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 focus-visible:ring-offset-white',
               preset.isActive
-                ? 'border-cyan-400 bg-cyan-950/40 text-cyan-200 shadow-[0_0_12px_rgba(6,182,212,0.2)]'
-                : 'border-slate-800 bg-slate-950/50 text-slate-300 hover:border-slate-700 hover:bg-slate-900'
+                ? 'border-blue-400 bg-blue-50/80 text-blue-900 shadow-xs ring-1 ring-blue-300'
+                : 'border-slate-200/80 bg-white/60 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
             )}
           >
-            <span className="text-xs font-semibold group-hover:text-cyan-300 transition-colors">
+            <span className="text-xs font-semibold text-slate-900 group-hover:text-blue-700 transition-colors">
               {preset.label}
             </span>
-            <span className="mt-1 text-[11px] leading-tight text-slate-400">
+            <span className="mt-1 text-[11px] leading-tight text-slate-500">
               {preset.description}
             </span>
           </button>

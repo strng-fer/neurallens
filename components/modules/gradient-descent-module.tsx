@@ -191,16 +191,16 @@ export function GradientDescentModule() {
   return (
     <div className="space-y-6">
       {/* Module Heading & Objective */}
-      <div className="flex flex-col gap-1.5 border-b border-slate-800 pb-4">
+      <div className="flex flex-col gap-1.5 border-b border-slate-200/80 pb-4">
         <div className="flex items-center gap-2">
-          <span className="rounded bg-cyan-950 px-2 py-0.5 font-mono text-xs font-bold text-cyan-400 border border-cyan-800/60">
+          <span className="rounded bg-blue-50 px-2 py-0.5 font-mono text-xs font-bold text-blue-700 border border-blue-200">
             Modul 01
           </span>
-          <h2 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+          <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
             Bagaimana Mesin Belajar dari Kesalahan?
           </h2>
         </div>
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-slate-600">
           Mengamati bagaimana algoritma Gradient Descent memandu bobot parameter bergerak menuruni kurva kesalahan (Loss Landscape) hingga mencapai titik paling optimal.
         </p>
       </div>
@@ -211,14 +211,14 @@ export function GradientDescentModule() {
       {/* Main Grid: Visualizer & Controls */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
         {/* Left Column: Interactive 2D Loss Landscape Graph */}
-        <div className="flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/80 p-4 backdrop-blur-md lg:col-span-7">
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+        <div className="flex flex-col gap-3 rounded-2xl border border-slate-200/80 bg-white/80 p-4 backdrop-blur-md shadow-xs lg:col-span-7">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/80 pb-3">
             <div>
-              <h3 className="text-sm font-semibold text-slate-100">
+              <h3 className="text-sm font-semibold text-slate-900">
                 Lembah Kesalahan (Loss Landscape) 2D
               </h3>
-              <p className="text-xs text-slate-400">
-                Bola neon menunjukkan posisi parameter bobot w saat ini
+              <p className="text-xs text-slate-500">
+                Titik bola menunjukkan posisi parameter bobot w saat ini
               </p>
             </div>
             <StatusIndicator
@@ -229,7 +229,7 @@ export function GradientDescentModule() {
           </div>
 
           {/* SVG Canvas */}
-          <div className="relative flex w-full items-center justify-center overflow-hidden rounded-xl border border-slate-800/90 bg-slate-950 p-2">
+          <div className="relative flex w-full items-center justify-center overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50/70 p-2 shadow-xs">
             <svg
               viewBox={`0 0 ${svgWidth} ${svgHeight}`}
               className="h-auto w-full select-none"
@@ -238,17 +238,8 @@ export function GradientDescentModule() {
             >
               {/* Grid Lines */}
               <defs>
-                <linearGradient id="curveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.4" />
-                  <stop offset="50%" stopColor="#10B981" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.4" />
-                </linearGradient>
-                <filter id="glowBall" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="3.5" result="coloredBlur" />
-                  <feMerge>
-                    <feMergeNode in="coloredBlur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
+                <filter id="shadowBall" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="2" stdDeviation="2" floodOpacity="0.25" />
                 </filter>
               </defs>
 
@@ -262,7 +253,7 @@ export function GradientDescentModule() {
                       y1={yPos}
                       x2={svgWidth - 40}
                       y2={yPos}
-                      stroke="#1E293B"
+                      stroke="#CBD5E1"
                       strokeDasharray="3 3"
                     />
                     <text
@@ -289,7 +280,7 @@ export function GradientDescentModule() {
                       y1={20}
                       x2={xPos}
                       y2={svgHeight - 40}
-                      stroke="#1E293B"
+                      stroke="#CBD5E1"
                       strokeDasharray="3 3"
                     />
                     <text
@@ -312,14 +303,14 @@ export function GradientDescentModule() {
                 cy={targetY}
                 r="6"
                 fill="none"
-                stroke="#10B981"
+                stroke="#059669"
                 strokeWidth="2"
                 strokeDasharray="2 2"
               />
               <text
                 x={targetX}
                 y={targetY + 20}
-                fill="#10B981"
+                fill="#059669"
                 fontSize="10"
                 textAnchor="middle"
                 fontWeight="bold"
@@ -331,7 +322,7 @@ export function GradientDescentModule() {
               <path
                 d={pathD}
                 fill="none"
-                stroke="url(#curveGradient)"
+                stroke="#2563EB"
                 strokeWidth="3.5"
                 strokeLinecap="round"
               />
@@ -343,8 +334,8 @@ export function GradientDescentModule() {
                   cx={toSvgX(pt.w)}
                   cy={toSvgY(pt.loss)}
                   r={idx === history.length - 1 ? 2 : 2.5}
-                  fill="#F59E0B"
-                  opacity={0.4 + (idx / history.length) * 0.5}
+                  fill="#D97706"
+                  opacity={0.5 + (idx / history.length) * 0.5}
                 />
               ))}
 
@@ -354,20 +345,20 @@ export function GradientDescentModule() {
                 y1={ty1}
                 x2={tx2}
                 y2={ty2}
-                stroke={highlightedSymbol === 'gradient' ? '#F59E0B' : '#F43F5E'}
+                stroke={highlightedSymbol === 'gradient' ? '#D97706' : '#E11D48'}
                 strokeWidth={highlightedSymbol === 'gradient' ? '3' : '2'}
                 strokeDasharray="4 2"
               />
 
-              {/* Neon Current Ball */}
+              {/* Current Ball */}
               <circle
                 cx={ballX}
                 cy={ballY}
-                r="8"
-                fill="#06B6D4"
+                r="7.5"
+                fill="#2563EB"
                 stroke="#FFFFFF"
-                strokeWidth="2"
-                filter="url(#glowBall)"
+                strokeWidth="2.5"
+                filter="url(#shadowBall)"
               />
 
               {/* Current Value Tooltip Label above the ball */}
@@ -378,14 +369,14 @@ export function GradientDescentModule() {
                   width="90"
                   height="20"
                   rx="4"
-                  fill="#0F172A"
-                  stroke="#334155"
+                  fill="#FFFFFF"
+                  stroke="#CBD5E1"
                   strokeWidth="1"
                 />
                 <text
                   x="0"
                   y="-4"
-                  fill="#F8FAFC"
+                  fill="#0F172A"
                   fontSize="11"
                   fontFamily="monospace"
                   textAnchor="middle"
@@ -399,18 +390,20 @@ export function GradientDescentModule() {
               <text
                 x={svgWidth / 2}
                 y={svgHeight - 4}
-                fill="#94A3B8"
+                fill="#475569"
                 fontSize="11"
                 textAnchor="middle"
+                fontWeight="500"
               >
                 Parameter Bobot (w)
               </text>
               <text
                 x={12}
                 y={svgHeight / 2}
-                fill="#94A3B8"
+                fill="#475569"
                 fontSize="11"
                 textAnchor="middle"
+                fontWeight="500"
                 transform={`rotate(-90 12 ${svgHeight / 2})`}
               >
                 Tingkat Kesalahan Loss L(w)
@@ -419,22 +412,22 @@ export function GradientDescentModule() {
           </div>
 
           {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-3 gap-2 rounded-xl border border-slate-800/90 bg-slate-950/60 p-2.5 text-center">
+          <div className="grid grid-cols-3 gap-2 rounded-xl border border-slate-200/80 bg-white/70 p-2.5 text-center shadow-xs">
             <div className="flex flex-col">
-              <span className="text-[11px] text-slate-400">Bobot Saat Ini (w)</span>
-              <span className="font-mono text-base font-bold text-cyan-400">
+              <span className="text-[11px] text-slate-500">Bobot Saat Ini (w)</span>
+              <span className="font-mono text-base font-bold text-blue-700">
                 {w.toFixed(3)}
               </span>
             </div>
-            <div className="flex flex-col border-x border-slate-800">
-              <span className="text-[11px] text-slate-400">Nilai Loss L(w)</span>
-              <span className="font-mono text-base font-bold text-amber-400">
+            <div className="flex flex-col border-x border-slate-200">
+              <span className="text-[11px] text-slate-500">Nilai Loss L(w)</span>
+              <span className="font-mono text-base font-bold text-amber-700">
                 {currentLoss.toFixed(3)}
               </span>
             </div>
             <div className="flex flex-col">
-              <span className="text-[11px] text-slate-400">Gradien Kemiringan</span>
-              <span className="font-mono text-base font-bold text-rose-400">
+              <span className="text-[11px] text-slate-500">Gradien Kemiringan</span>
+              <span className="font-mono text-base font-bold text-rose-700">
                 {currentGradient > 0 ? `+${currentGradient.toFixed(2)}` : currentGradient.toFixed(2)}
               </span>
             </div>
@@ -453,8 +446,8 @@ export function GradientDescentModule() {
           />
 
           {/* Sliders Card */}
-          <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-4 backdrop-blur-md space-y-4">
-            <h4 className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+          <div className="rounded-xl border border-slate-200/80 bg-white/80 p-4 backdrop-blur-md shadow-xs space-y-4">
+            <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
               Pengatur Eksperimen
             </h4>
 
@@ -472,7 +465,7 @@ export function GradientDescentModule() {
                 setW(newW);
                 setHistory([{ w: newW, loss: calculateLoss(newW) }]);
               }}
-              color="#06B6D4"
+              color="#2563EB"
               tooltip="Geser posisi awal bola di lereng"
             />
 
@@ -486,7 +479,7 @@ export function GradientDescentModule() {
               max={1.05}
               step={0.05}
               onChange={(newLr) => setLearningRate(newLr)}
-              color="#F59E0B"
+              color="#D97706"
               tooltip="Besar lompatan setiap kali melangkah"
             />
           </div>
@@ -496,10 +489,10 @@ export function GradientDescentModule() {
             title="Rumus Matematis Pembaruan Parameter"
             latex="w_{\text{baru}} = w - \alpha \cdot \frac{dL}{dw}"
             variableMap={[
-              { symbol: 'w', label: 'Bobot saat ini', value: w.toFixed(2), color: '#06B6D4' },
-              { symbol: 'α', label: 'Learning rate', value: learningRate.toFixed(2), color: '#F59E0B' },
-              { symbol: 'gradient', label: 'Gradien (2(w-3))', value: currentGradient.toFixed(2), color: '#F43F5E' },
-              { symbol: 'loss', label: 'Loss L(w)', value: currentLoss.toFixed(2), color: '#10B981' },
+              { symbol: 'w', label: 'Bobot saat ini', value: w.toFixed(2), color: '#2563EB' },
+              { symbol: 'α', label: 'Learning rate', value: learningRate.toFixed(2), color: '#D97706' },
+              { symbol: 'gradient', label: 'Gradien (2(w-3))', value: currentGradient.toFixed(2), color: '#E11D48' },
+              { symbol: 'loss', label: 'Loss L(w)', value: currentLoss.toFixed(2), color: '#059669' },
             ]}
           />
 
@@ -514,8 +507,8 @@ export function GradientDescentModule() {
             }
             mathText={
               <p>
-                Fungsi loss kuadratik <span className="font-mono text-cyan-300">L(w) = (w - 3)² + 1</span> memiliki titik stasioner minimum global di <span className="font-mono text-emerald-400">w = 3</span> dengan nilai minimum <span className="font-mono">1</span>.
-                Gradien <span className="font-mono text-rose-400">dL/dw = 2(w - 3)</span> menunjukkan arah kenaikan tertajam. Oleh karena itu, kita mengurangkan bobot dengan arah gradien dikalikan koefisien <span className="font-mono text-amber-300">α</span> agar bergerak menuju nilai minimum.
+                Fungsi loss kuadratik <span className="font-mono font-semibold text-blue-700">L(w) = (w - 3)² + 1</span> memiliki titik stasioner minimum global di <span className="font-mono font-semibold text-emerald-700">w = 3</span> dengan nilai minimum <span className="font-mono font-semibold text-slate-800">1</span>.
+                Gradien <span className="font-mono font-semibold text-rose-700">dL/dw = 2(w - 3)</span> menunjukkan arah kenaikan tertajam. Oleh karena itu, kita mengurangkan bobot dengan arah gradien dikalikan koefisien <span className="font-mono font-semibold text-amber-700">α</span> agar bergerak menuju nilai minimum.
               </p>
             }
             keyTakeaway="Learning rate (α) mengatur kompromi antara kecepatan konvergensi dan kestabilan. Terlalu kecil lambat sampai, terlalu besar menyebabkan osilasi atau divergen (overshooting)."

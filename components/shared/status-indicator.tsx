@@ -21,47 +21,47 @@ export function StatusIndicator({
 }: StatusIndicatorProps) {
   const config = {
     ready: {
-      border: 'border-slate-700',
-      bg: 'bg-slate-900/80',
-      text: 'text-slate-300',
-      icon: <Clock className="h-4 w-4 text-slate-400" aria-hidden="true" />,
+      border: 'border-slate-300',
+      bg: 'bg-white/80',
+      text: 'text-slate-700',
+      icon: <Clock className="h-4 w-4 text-slate-500" aria-hidden="true" />,
     },
     running: {
-      border: 'border-cyan-500/50',
-      bg: 'bg-cyan-950/40',
-      text: 'text-cyan-300',
-      icon: <Activity className="h-4 w-4 text-cyan-400 animate-pulse" aria-hidden="true" />,
+      border: 'border-blue-300',
+      bg: 'bg-blue-50/80',
+      text: 'text-blue-900',
+      icon: <Activity className="h-4 w-4 text-blue-600 animate-pulse" aria-hidden="true" />,
     },
     paused: {
-      border: 'border-amber-500/50',
-      bg: 'bg-amber-950/40',
-      text: 'text-amber-300',
-      icon: <PauseCircle className="h-4 w-4 text-amber-400" aria-hidden="true" />,
+      border: 'border-amber-300',
+      bg: 'bg-amber-50/80',
+      text: 'text-amber-900',
+      icon: <PauseCircle className="h-4 w-4 text-amber-600" aria-hidden="true" />,
     },
     success: {
-      border: 'border-emerald-500/50',
-      bg: 'bg-emerald-950/40',
-      text: 'text-emerald-300',
-      icon: <CheckCircle2 className="h-4 w-4 text-emerald-400" aria-hidden="true" />,
+      border: 'border-emerald-300',
+      bg: 'bg-emerald-50/80',
+      text: 'text-emerald-900',
+      icon: <CheckCircle2 className="h-4 w-4 text-emerald-600" aria-hidden="true" />,
     },
     warning: {
-      border: 'border-rose-500/50',
-      bg: 'bg-rose-950/40',
-      text: 'text-rose-300',
-      icon: <AlertTriangle className="h-4 w-4 text-rose-400" aria-hidden="true" />,
+      border: 'border-rose-300',
+      bg: 'bg-rose-50/80',
+      text: 'text-rose-900',
+      icon: <AlertTriangle className="h-4 w-4 text-rose-600" aria-hidden="true" />,
     },
     info: {
-      border: 'border-cyan-800/40',
-      bg: 'bg-slate-900',
-      text: 'text-slate-200',
-      icon: <Clock className="h-4 w-4 text-cyan-400" aria-hidden="true" />,
+      border: 'border-sky-300',
+      bg: 'bg-sky-50/80',
+      text: 'text-sky-900',
+      icon: <Clock className="h-4 w-4 text-sky-600" aria-hidden="true" />,
     },
   }[variant];
 
   return (
     <div
       className={cn(
-        'inline-flex items-center gap-2.5 rounded-lg border px-3 py-1.5 text-xs font-medium backdrop-blur-sm transition-all',
+        'inline-flex items-center gap-2.5 rounded-lg border px-3 py-1.5 text-xs font-medium backdrop-blur-sm transition-all shadow-xs',
         config.border,
         config.bg,
         config.text,
@@ -73,7 +73,7 @@ export function StatusIndicator({
       <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
         <span className="font-semibold">{status}</span>
         {description && (
-          <span className="text-[11px] text-slate-400 font-normal">
+          <span className="text-[11px] text-slate-500 font-normal">
             ({description})
           </span>
         )}
